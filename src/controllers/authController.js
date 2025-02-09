@@ -7,7 +7,7 @@ export const login = (req, res) => {
     try {
         const user = authService.validateUser(username, password);
         const tokens = authService.generateTokens(user);
-        res.json(tokens);
+        res.json({ username: user.username, ...tokens });
     } catch (error) {
         res.status(401).json({ message: error.message });
     }

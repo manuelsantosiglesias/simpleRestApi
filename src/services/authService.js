@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 // TODO: REFACTORIZAR CLASE PARA PERSISTENCIA EN BD
+// TODO: Login que devuelva nombre de usuario
 class AuthService {
     constructor() {
         this.users = []; // Usuarios en local
@@ -46,6 +47,7 @@ class AuthService {
     }
 
     createToken(user) {
+        //TODO: expiresIN a variable .env
         const payload = { username: user.username };
         const options = { expiresIn: '1h'};
         return jwt.sign(payload, process.env.JWT_SECRET, options);
@@ -67,6 +69,7 @@ class AuthService {
         }
     }
 
+    // TODO: no está correcto, trabajar en las tokens inválidas sin cerrar sesión
     invalidateTokens(authToken, refreshToken) {
         this.invalidTokens.add(authToken);
         this.invalidTokens.add(refreshToken);
