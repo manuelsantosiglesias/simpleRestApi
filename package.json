@@ -1,5 +1,5 @@
 {
-  "name": "simple-res-api",
+  "name": "simple-rest-api",
   "version": "0.0.1",
   "description": "Simple REST API with Node.js",
   "main": "src/server.js",
