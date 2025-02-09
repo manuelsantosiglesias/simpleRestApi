@@ -1,7 +1,7 @@
 {
   "name": "node-rest-api",
   "version": "0.0.1",
-  "description": "A REST API with user authentication using JWT and external API connection.",
+  "description": "Simple REST API with Node.js",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
