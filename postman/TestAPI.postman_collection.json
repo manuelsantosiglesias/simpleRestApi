@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "23033a45-5ae1-4ba2-95a9-be06376f4372",
+		"_postman_id": "4a44327d-dad0-4f75-aaf7-f416c48dfc72",
 		"name": "TestAPI",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "41970162"
+		"_exporter_id": "41701364"
 	},
 	"item": [
 		{
@@ -37,8 +37,56 @@
 		{
 			"name": "registerUser",
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"admin2\",\r\n    \"password\": \"admin2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/auth/register",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "refresh",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzM5MjAxMDEzLCJleHAiOjE3Mzk4MDU4MTN9.-qcmnO3ILj75oSgizMFPdwIYSrtv9WDD5p6Bq3ZV1rM\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/auth/refresh",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"refresh"
+					]
+				}
 			},
 			"response": []
 		},
@@ -49,12 +97,23 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"testuser\",\r\n    \"password\": \"test\"\r\n}",
+					"raw": "{\r\n    \"username\": \"admin2\",\r\n    \"password\": \"admin2\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
+				},
+				"url": {
+					"raw": "localhost:3000/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"login"
+					]
 				}
 			},
 			"response": []
@@ -62,6 +121,16 @@
 		{
 			"name": "pokemon",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzM5MjAxMTE3LCJleHAiOjE3MzkyMDQ3MTd9.hKKJdvgwgJidj9iIXjF3ttjrne4VVK1ZwDn8JK66A10",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
