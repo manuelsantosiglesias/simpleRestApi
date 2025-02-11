@@ -50,13 +50,13 @@ class AuthService {
     createToken(user) {
         //TODO: expiresIN a variable .env
         const payload = { username: user.username };
-        const options = { expiresIn: '1h'};
+        const options = { expiresIn: process.env.JWT_EXPIRES_IN };
         return jwt.sign(payload, process.env.JWT_SECRET, options);
     }
 
     createRefreshToken(user) {
         const payload = { username: user.username };
-        const options = { expiresIn: '7d'};
+        const options = { expiresIn: process.env.REFRESH_TOKEN_EXPIRES_IN};
         return jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, options);
     }
 
