@@ -9,6 +9,7 @@ class AuthService {
     constructor() {
         this.users = []; // Usuarios en local
         // TODO: MOVER A BASE DE DATOS PERSISTENCIA
+        // USAR TOKEN VERSIONS Y UUID, cambiar UUID en logout
         this.invalidTokens = new Set();
 
         // Registrar usuario administrador por defecto
