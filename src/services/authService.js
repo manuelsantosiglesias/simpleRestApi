@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import { v4 as uuidv4 } from 'uuid';
 
 dotenv.config();
 
@@ -15,7 +16,8 @@ class AuthService {
         // Registrar usuario administrador por defecto
         const adminUser = {
             username: process.env.DEFAULT_LOGIN,
-            password: process.env.DEFAULT_PASS
+            password: process.env.DEFAULT_PASS,
+            tokenVersion: uuidv4()
         };
         this.register(adminUser);
     }
@@ -26,6 +28,7 @@ class AuthService {
         if (existingUser) {
             throw new Error('User already exists');
         }
+        user.tokenVersion = uuidv4();
         this.users.push(user);
         console.log('Usuario', user, 'registrado');
         return user;
@@ -49,13 +52,13 @@ class AuthService {
 
     createToken(user) {
         //TODO: expiresIN a variable .env
-        const payload = { username: user.username };
+        const payload = { username: user.username, tokenVersion: user.tokenVersion  };
         const options = { expiresIn: process.env.JWT_EXPIRES_IN };
         return jwt.sign(payload, process.env.JWT_SECRET, options);
     }
 
     createRefreshToken(user) {
-        const payload = { username: user.username };
+        const payload = { username: user.username, tokenVersion: user.tokenVersion  };
         const options = { expiresIn: process.env.REFRESH_TOKEN_EXPIRES_IN};
         return jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, options);
     }
@@ -63,7 +66,10 @@ class AuthService {
     refreshAuthToken(refreshToken) {
         try {
             const decoded = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
-            const user = { username: decoded.username };
+            const user = this.users.find(u => u.username === decoded.username);
+            if (!user || user.tokenVersion !== decoded.tokenVersion) {
+                throw new Error('Invalid refresh token');
+            }
             return this.createToken(user);
         } catch (error) {
             throw new Error('Invalid refresh token');
@@ -72,12 +78,25 @@ class AuthService {
 
     // TODO: no está correcto, trabajar en las tokens inválidas sin cerrar sesión
     invalidateTokens(authToken, refreshToken) {
-        this.invalidTokens.add(authToken);
-        this.invalidTokens.add(refreshToken);
+        try {
+            const decoded = jwt.verify(authToken, process.env.JWT_SECRET);
+            const user = this.users.find(u => u.username === decoded.username);
+            if (user) {
+                user.tokenVersion = uuidv4(); // Cambiar tokenVersion al invalidar tokens
+            }
+        } catch (error) {
+            throw new Error('Invalid token');
+        }
     }
 
     isTokenInvalid(token) {
-        return this.invalidTokens.has(token);
+        try {
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            const user = this.users.find(u => u.username === decoded.username);
+            return !user || user.tokenVersion !== decoded.tokenVersion;
+        } catch (error) {
+            return true;
+        }
     }
 }
 
