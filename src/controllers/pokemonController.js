@@ -23,10 +23,9 @@ export const getPokemon = async (req, res) => {
 
 export const getPokemonById = async (req, res) => {
     const { id } = req.query;
-    console.log(`Fetching data for Pokemon ID: ${id}`); // Add this line
+    console.log(`Fetching data for Pokemon ID: ${id}`);
     try {
         const url = `${POKEMON_API_URL_BY_ID}${id}/`;
-        console.log(`Requesting URL: ${url}`); // Add this line
         const pokemonData = await apiRequest('get', url);
         res.json(pokemonData);
     } catch (error) {
