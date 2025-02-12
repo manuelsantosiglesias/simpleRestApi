@@ -1,8 +1,9 @@
-import axios from '../utils/axiosInstance.js';
+import { createAxiosInstance } from '../utils/axiosFactory.js';
 
-export const apiRequest = async (method, url, data = null, headers = {}) => {
+export const apiRequest = async (method, url, data = null, headers = {}, baseURL = process.env.EXTERNAL_API_URL) => {
+    const axiosInstance = createAxiosInstance(baseURL);
     try {
-        const response = await axios({
+        const response = await axiosInstance({
             method,
             url,
             data,
