@@ -24,9 +24,12 @@ export const refreshToken = (req, res) => {
 };
 
 export const logout = (req, res) => {
-    const { authToken, refreshToken } = req.body;
+    const authToken = req.body.authToken || (req.headers.authorization && req.headers.authorization.split(' ')[1]);
     try {
-        authService.invalidateTokens(authToken, refreshToken);
+        if (!authToken) {
+            throw new Error('No Auth User');
+        }
+        authService.invalidateTokens(authToken);
         res.json({ message: 'Logged out successfully' });
     } catch (error) {
         res.status(400).json({ message: error.message });

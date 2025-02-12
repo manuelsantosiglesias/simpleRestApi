@@ -77,7 +77,7 @@ class AuthService {
     }
 
     // TODO: no está correcto, trabajar en las tokens inválidas sin cerrar sesión
-    invalidateTokens(authToken, refreshToken) {
+    invalidateTokens(authToken) {
         try {
             const decoded = jwt.verify(authToken, process.env.JWT_SECRET);
             const user = this.users.find(u => u.username === decoded.username);
@@ -85,6 +85,7 @@ class AuthService {
                 user.tokenVersion = uuidv4(); // Cambiar tokenVersion al invalidar tokens
             }
         } catch (error) {
+            console.log(error);
             throw new Error('Invalid token');
         }
     }
