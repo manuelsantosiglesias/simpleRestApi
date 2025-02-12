@@ -4,6 +4,7 @@ import { JsonParser } from '../utils/JsonParser.js';
 import { Pokemon } from '../models/Pokemon.js';
 
 const POKEMON_API_URL = 'https://pokeapi.co/api/v2/pokemon?limit=151';
+const POKEMON_API_URL_BY_ID = 'https://pokeapi.co/api/v2/pokemon/';
 
 export const getPokemon = async (req, res) => {
     try {
@@ -14,6 +15,21 @@ export const getPokemon = async (req, res) => {
         res.json(parsedData);
     } catch (error) {
         // TODO: REVISAR MAIL
+        console.log(error);
+        await emailService.sendErrorEmail(error.message);
+        res.status(500).json({ message: 'Failed to fetch data from external API' });
+    }
+};
+
+export const getPokemonById = async (req, res) => {
+    const { id } = req.query;
+    console.log(`Fetching data for Pokemon ID: ${id}`); // Add this line
+    try {
+        const url = `${POKEMON_API_URL_BY_ID}${id}/`;
+        console.log(`Requesting URL: ${url}`); // Add this line
+        const pokemonData = await apiRequest('get', url);
+        res.json(pokemonData);
+    } catch (error) {
         console.log(error);
         await emailService.sendErrorEmail(error.message);
         res.status(500).json({ message: 'Failed to fetch data from external API' });
