@@ -33,6 +33,14 @@ Este proyecto es una API REST construida con Node.js y Express. La API incluye a
     npm run dev
     ```
 
+## Ejecutar test unitarios
+
+npm test
+
+## Ejecutar test unitarios concretos
+
+npx jest tests/authService.test.js
+
 ## Ejecutar como servicio
 
 En el directorio
