@@ -15,7 +15,6 @@ export const getPokemon = async (req, res) => {
         res.json(parsedData);
     } catch (error) {
         // TODO: REVISAR MAIL
-        console.log(error);
         await emailService.sendErrorEmail(error.message);
         res.status(500).json({ message: 'Failed to fetch data from external API' });
     }
@@ -29,7 +28,6 @@ export const getPokemonById = async (req, res) => {
         const pokemonData = await apiRequest('get', url);
         res.json(pokemonData);
     } catch (error) {
-        console.log(error);
         await emailService.sendErrorEmail(error.message);
         res.status(500).json({ message: 'Failed to fetch data from external API' });
     }

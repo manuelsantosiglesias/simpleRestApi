@@ -19,15 +19,15 @@ morgan.token('headers', function (req) {
 });
 
 morgan.token('remote-addr', function (req) {
-    return req.ip || req.connection.remoteAddress;
+    return req.ip || req.socket.remoteAddress;
 });
 
 morgan.token('remote-connection', function (req) {
     return JSON.stringify({
-        remoteAddress: req.connection.remoteAddress,
-        remotePort: req.connection.remotePort,
-        localAddress: req.connection.localAddress,
-        localPort: req.connection.localPort
+        remoteAddress: req.socket.remoteAddress,
+        remotePort: req.socket.remotePort,
+        localAddress: req.socket.localAddress,
+        localPort: req.socket.localPort
     });
 });
 

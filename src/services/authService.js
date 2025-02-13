@@ -30,7 +30,6 @@ class AuthService {
         }
         user.tokenVersion = uuidv4();
         this.users.push(user);
-        console.log('Usuario', user, 'registrado');
         return user;
     }
 
@@ -40,7 +39,6 @@ class AuthService {
         if (!user) {
             throw new Error('Invalid credentials');
         }
-        console.log('Usuario ', user, 'validado');
         return user;
     }
 
