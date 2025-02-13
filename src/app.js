@@ -21,5 +21,4 @@ app.use(swaggerRouter);
 app.use('/auth', authRoutes);
 app.use('/pokemon', pokemonRoutes);
 
-//TODO: Algun tipo de doc??? SWAGGER-UI??
 export default app;

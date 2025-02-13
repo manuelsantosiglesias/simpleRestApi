@@ -10,7 +10,7 @@ const __dirname = path.dirname(__filename);
 // Fichero de logs rotativo
 const accessLogStream = createStream('access.log', {
     interval: '1d',
-    path: path.join(__dirname, '../log') // Ajusta la ruta según sea necesario
+    path: path.join(__dirname, '../log')
 });
 
 // Formato personalizado

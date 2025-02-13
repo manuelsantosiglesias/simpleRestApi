@@ -11,7 +11,7 @@ export const getPokemon = async (req, res) => {
         //TODO: AÑADIR FACTORY Y HANDLER DE SOAP
         const pokemonData = await apiRequest('get', POKEMON_API_URL);
         const parser = new JsonParser(Pokemon);
-        const parsedData = parser.parse(pokemonData.results); // Asumiendo que la respuesta tiene una propiedad 'results'
+        const parsedData = parser.parse(pokemonData.results);
         res.json(parsedData);
     } catch (error) {
         // TODO: REVISAR MAIL
