@@ -85,7 +85,6 @@ class AuthService {
                 user.tokenVersion = uuidv4(); // Cambiar tokenVersion al invalidar tokens
             }
         } catch (error) {
-            console.log(error);
             throw new Error('Invalid token');
         }
     }
