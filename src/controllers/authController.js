@@ -1,8 +1,6 @@
 import authService from '../services/authService.js';
 
 export const login = (req, res) => {
-
-    // TODO: IF USER EXISTS INVALIDATE TOKENS
     const { username, password } = req.body;
     try {
         const user = authService.validateUser(username, password);
