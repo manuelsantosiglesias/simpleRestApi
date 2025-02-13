@@ -1,1 +1,0 @@
-// TODO: Sin DB por el momento
