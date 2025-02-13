@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"mail@example.com\",\r\n    \"password\": \"pass\"\r\n}",
+					"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -63,36 +63,18 @@
 			"response": []
 		},
 		{
-			"name": "refresh",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzM5MjAxMDEzLCJleHAiOjE3Mzk4MDU4MTN9.-qcmnO3ILj75oSgizMFPdwIYSrtv9WDD5p6Bq3ZV1rM\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:3000/auth/refresh",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"auth",
-						"refresh"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "exampleRegUserLogin",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzM5MjY2ODI5LCJleHAiOjE3MzkyNzA0Mjl9.J6lO3ivFzOXJtNdKnL--_8Ly0O_IlErpvl5JUV5QgoY",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -119,6 +101,34 @@
 			"response": []
 		},
 		{
+			"name": "refresh",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidG9rZW5WZXJzaW9uIjoiMmI2MmExNjEtY2I0Ni00ZDhhLWIyYTgtNGE4YzczMzA1OWIzIiwiaWF0IjoxNzM5MzQ5MDQzLCJleHAiOjE3Mzk5NTM4NDN9.qKuV_56KlhN7NylC61lRay03Fp-iEsL30U4iC_Sru6c\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/auth/refresh",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "pokemon",
 			"request": {
 				"auth": {
@@ -126,7 +136,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzM5MjAxMTE3LCJleHAiOjE3MzkyMDQ3MTd9.hKKJdvgwgJidj9iIXjF3ttjrne4VVK1ZwDn8JK66A10",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidG9rZW5WZXJzaW9uIjoiMDAwMTExNjQtYTQ5NS00OWQzLWIzNjUtMGVhODcyYWI0MWEwIiwiaWF0IjoxNzM5NDM4NjMzLCJleHAiOjE3Mzk0NDIyMzN9.xxT141A7CQ9B8egViBbsFBUzla_6xqV2QYONZ1KLlng",
 							"type": "string"
 						}
 					]
@@ -142,6 +152,78 @@
 					"port": "3000",
 					"path": [
 						"pokemon"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pokemonId",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidG9rZW5WZXJzaW9uIjoiMDAwMTExNjQtYTQ5NS00OWQzLWIzNjUtMGVhODcyYWI0MWEwIiwiaWF0IjoxNzM5NDM4NjMzLCJleHAiOjE3Mzk0NDIyMzN9.xxT141A7CQ9B8egViBbsFBUzla_6xqV2QYONZ1KLlng",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/pokemon/byId?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pokemon",
+						"byId"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMiIsInRva2VuVmVyc2lvbiI6ImM2NGI4NGRhLTY0OWMtNDk2OC05ZjEyLWVhYWZjMTBiZTNiYyIsImlhdCI6MTczOTM2MTc1NCwiZXhwIjoxNzM5MzY1MzU0fQ.qnvev1AKk3oIyTZlp66d9uwcitNo_K7xTEK0sEDutkA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/auth/logout",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"logout"
 					]
 				}
 			},
