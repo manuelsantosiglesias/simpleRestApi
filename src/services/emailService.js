@@ -17,6 +17,18 @@ class EmailService {
                 pass: process.env.EMAIL_PASS
             }
         });
+
+        /*
+            this.transporter = nodemailer.createTransport({
+                host: 'something.yourdomain.com',
+                port: 465,
+                secure: true, // true for 465, false for other ports
+                auth: {
+                user: 'username@mydomain.com', // your domain email address
+                pass: 'password' // your password
+                }
+            });
+        */
     }
 
     async sendErrorEmail(errorMessage) {
