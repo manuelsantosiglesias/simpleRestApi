@@ -24,26 +24,6 @@ export const simpleLogin = async (req, res) => {
     }
 };
 
-export const loginUser = async (req, res) => {
-    const { username, password } = req.body;
-
-    try {
-        const response = await axios.post(`${ANOTHER_API_URL}${LOGIN_PATH}`, {
-            username,
-            password,
-            expiresInMins: 30
-        });
-
-        const data = response.data;
-        setAuthToken(data.accessToken);
-        setRefreshToken(data.refreshToken);
-        res.json(data);
-    } catch (error) {
-        console.error('Failed to login:', error.response ? error.response.data : error.message);
-        res.status(500).json({ message: 'Internal server error' });
-    }
-};
-
 const loginWithEnvCredentials = async () => {
     const username = process.env.EXT_LOGIN;
     const password = process.env.EXT_PASS;
