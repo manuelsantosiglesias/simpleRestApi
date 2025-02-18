@@ -1,20 +1,20 @@
-import express from 'express';
+import { Router } from 'express';
 import { simpleLogin, getCurrentUser } from '../controllers/extAuthAPIController.js';
 
-const router = express.Router();
+const router = Router();
 
 /**
  * @swagger
  * tags:
  *   name: ExtAuthAPI
- *   description: External API with Authentication
+ *   description: API Externa con autentificación
  */
 
 /**
  * @swagger
  * /extapi/login:
  *   post:
- *     summary: Login user and get tokens
+ *     summary: Función externa de login
  *     tags: [ExtAuthAPI]
  *     requestBody:
  *       required: true
@@ -32,28 +32,28 @@ const router = express.Router();
  *             password: emilyspass
  *     responses:
  *       200:
- *         description: Login successful
+ *         description: Login OK
  *       500:
- *         description: Internal server error
+ *         description: Fallo al hacer login
  */
-router.post('/login', simpleLogin);
+router.post('/extapi/login', simpleLogin);
 
 /**
  * @swagger
  * /extapi/getUserAutoLogin:
  *   get:
- *     summary: Get current authenticated user
+ *     summary: Función getUser con login y manejo de tokens automático
  *     tags: [ExtAuthAPI]
  *     security:
  *       - bearerAuth: []
  *     responses:
  *       200:
- *         description: User data fetched successfully
+ *         description: Ok información de usuario
  *       401:
- *         description: Unauthorized
+ *         description: Sin autorización
  *       500:
- *         description: Failed to fetch user data
+ *         description: Fallo al obtener autorización
  */
-router.get('/getUserAutoLogin', getCurrentUser);
+router.get('/extapi/getUserAutoLogin', getCurrentUser);
 
 export default router;

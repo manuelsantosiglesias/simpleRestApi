@@ -3,6 +3,12 @@ import { getPokemon, getPokemonById } from '../controllers/pokemonController.js'
 import { authenticateToken } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
+/**
+ * @swagger
+ * tags:
+ *   name: Pokemon
+ *   description: API de Pokemon sin autorización
+ */
 
 /**
  * @swagger

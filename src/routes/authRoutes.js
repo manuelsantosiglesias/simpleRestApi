@@ -4,6 +4,12 @@ import { register } from '../controllers/userController.js';
 import { authenticateToken } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
+/**
+ * @swagger
+ * tags:
+ *   name: Auth
+ *   description: Login de nuestra API
+ */
 
 /**
  * @swagger
@@ -22,6 +28,9 @@ const router = express.Router();
  *                 type: string
  *               password:
  *                 type: string
+ *           example:
+ *             username: admin
+ *             password: admin
  *     responses:
  *       200:
  *         description: Login exitoso
