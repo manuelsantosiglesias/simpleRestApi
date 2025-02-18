@@ -1,8 +1,8 @@
-import express from 'express';
+import { Router } from 'express';
 import { getPokemon, getPokemonById } from '../controllers/pokemonController.js';
 import { authenticateToken } from '../middlewares/authMiddleware.js';
 
-const router = express.Router();
+const router = Router();
 /**
  * @swagger
  * tags:
