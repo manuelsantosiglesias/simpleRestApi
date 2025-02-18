@@ -4,9 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 // TODO: Probar, parece correcto, sobrecargar sendErrorEmail con destinatario
 // TODO: Multiples cuentas destinatarias??
-// TODO: Handler de mail también
 // TODO: Añadir gestión de errores también más allá del mail
-// TODO: service GMAIL (comprobar) por ahora dejo por defecto
 
 class EmailService {
     constructor() {
