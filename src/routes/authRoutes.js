@@ -66,7 +66,7 @@ router.get('/logout', authenticateToken, logout);
  *           schema:
  *             type: object
  *             properties:
- *               token:
+ *               refreshToken:
  *                 type: string
  *     responses:
  *       200:
