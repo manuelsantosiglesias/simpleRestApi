@@ -12,7 +12,7 @@ export const createAxiosInstance = (baseURL, timeout = 5000) => {
 };
 
 // Conexión usando Bearer Token
-export const createAuthenticatedAxiosInstance = (baseURL, refreshPath, getAuthToken, getRefreshToken, refreshAuthToken, timeout = 5000) => {
+export const createAuthenticatedAxiosInstance = (baseURL, refreshPath, loginWithEnvCredentials, getAuthToken, getRefreshToken, setAuthToken, setRefreshToken, refreshAuthToken, timeout = 5000) => {
     const axiosInstance = axios.create({
         baseURL,
         timeout,
@@ -24,6 +24,9 @@ export const createAuthenticatedAxiosInstance = (baseURL, refreshPath, getAuthTo
     // Interceptor para manejar la autenticación
     axiosInstance.interceptors.request.use(async (config) => {
         let token = getAuthToken();
+        if (!token) {
+            token = await loginWithEnvCredentials();
+        }
         if (token) {
             config.headers['Authorization'] = `Bearer ${token}`;
         }
@@ -37,7 +40,7 @@ export const createAuthenticatedAxiosInstance = (baseURL, refreshPath, getAuthTo
         return response;
     }, async (error) => {
         const originalRequest = error.config;
-        if (error.response.status === 401 && !originalRequest._retry) {
+        if (error.response && error.response.status === 401 && !originalRequest._retry) {
             originalRequest._retry = true;
             const newToken = await refreshAuthToken(baseURL, refreshPath);
             if (newToken) {

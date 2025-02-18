@@ -83,23 +83,15 @@ const refreshAuthToken = async (baseURL, refreshPath) => {
 };
 
 export const getCurrentUser = async (req, res) => {
-    let token = getAuthToken();
-    
-    // TODO: cuando se salven credenciales en BD ya no se hace login siempre
-    if (!token) {
-        try {
-            token = await loginWithEnvCredentials();
-            } catch (error) {
-            return res.status(500).json({ message: error.message });
-        }
-    }
-
     // Usamos AxiosAuth
     const axiosInstance = createAuthenticatedAxiosInstance(
         ANOTHER_API_URL,
         REFRESH_PATH,
+        loginWithEnvCredentials,
         getAuthToken,
         getRefreshToken,
+        setAuthToken,
+        setRefreshToken,
         refreshAuthToken
     );
 
@@ -107,7 +99,9 @@ export const getCurrentUser = async (req, res) => {
         const response = await axiosInstance.get(`${ANOTHER_API_URL}/me`);
         res.json(response.data);
     } catch (error) {
-        await emailService.sendErrorEmail(error.message);
+        const errorMessage = error.response ? (error.response.data || error.message) : error.message;
+        console.error('Failed to fetch user data:', errorMessage);
+        // await emailService.sendErrorEmail(`Failed to fetch user data: ${errorMessage}`);
         res.status(500).json({ message: 'Failed to fetch user data' });
     }
 };
