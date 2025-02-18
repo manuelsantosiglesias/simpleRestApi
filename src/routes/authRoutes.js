@@ -1,6 +1,7 @@
 import express from 'express';
 import { login, logout, refreshToken } from '../controllers/authController.js';
 import { register } from '../controllers/userController.js';
+import { authenticateToken } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
@@ -33,13 +34,13 @@ router.post('/login', login);
  * @swagger
  * /auth/logout:
  *   get:
- *     summary: Logout de usuario
+ *     summary: Logout de usuario, borra tokens autorizadas
  *     tags: [Auth]
  *     responses:
  *       200:
  *         description: Logout exitoso
  */
-router.get('/logout', logout);
+router.get('/logout', authenticateToken, logout);
 
 /**
  * @swagger
