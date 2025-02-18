@@ -7,7 +7,7 @@ const router = Router();
  * @swagger
  * tags:
  *   name: ExtAuthAPI
- *   description: API Externa con autentificación
+ *   description: API Externa con autentificación. Solo se necesita la autenticación externa para realizar la consulta.
  */
 
 /**

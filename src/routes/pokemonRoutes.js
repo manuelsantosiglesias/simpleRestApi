@@ -7,7 +7,7 @@ const router = express.Router();
  * @swagger
  * tags:
  *   name: Pokemon
- *   description: API de Pokemon sin autorización
+ *   description: API de Pokemon sin autorización externa. Es necesario identificarse en nuestra API para realizar la consulta.
  */
 
 /**
