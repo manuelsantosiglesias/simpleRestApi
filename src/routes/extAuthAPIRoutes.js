@@ -36,7 +36,7 @@ const router = Router();
  *       500:
  *         description: Fallo al hacer login
  */
-router.post('/extapi/login', simpleLogin);
+router.post('/login', simpleLogin);
 
 /**
  * @swagger
@@ -54,6 +54,6 @@ router.post('/extapi/login', simpleLogin);
  *       500:
  *         description: Fallo al obtener autorización
  */
-router.get('/extapi/getUserAutoLogin', getCurrentUser);
+router.get('/getUserAutoLogin', getCurrentUser);
 
 export default router;
