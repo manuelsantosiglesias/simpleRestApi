@@ -12,7 +12,7 @@ export const createAxiosInstance = (baseURL, timeout = 5000) => {
 };
 
 // Conexión usando Bearer Token
-export const createAuthenticatedAxiosInstance = (baseURL, refreshPath, timeout = 5000) => {
+export const createAuthenticatedAxiosInstance = (baseURL, refreshPath, getAuthToken, getRefreshToken, refreshAuthToken, timeout = 5000) => {
     const axiosInstance = axios.create({
         baseURL,
         timeout,
@@ -47,6 +47,7 @@ export const createAuthenticatedAxiosInstance = (baseURL, refreshPath, timeout =
         }
         return Promise.reject(error);
     });
+
     return axiosInstance;
 };
 
@@ -54,20 +55,8 @@ const getAuthToken = () => {
     return authToken;
 };
 
-const refreshAuthToken = async (baseURL, refreshPath) => {
-    if (!refreshToken) {
-        return null;
-    }
-
-    try {
-        const response = await axios.post(`${baseURL}${refreshPath}`, { refreshToken });
-        const newAuthToken = response.data.authToken;
-        authToken = newAuthToken;
-        return newAuthToken;
-    } catch (error) {
-        console.error('Failed to refresh auth token:', error);
-        return null;
-    }
+const getRefreshToken = () => {
+    return refreshToken;
 };
 
 // Getter y setter de token (por ahora en local)
@@ -78,3 +67,5 @@ export const setAuthToken = (token) => {
 export const setRefreshToken = (token) => {
     refreshToken = token;
 };
+
+export { getAuthToken, getRefreshToken };

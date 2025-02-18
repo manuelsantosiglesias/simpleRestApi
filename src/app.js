@@ -4,6 +4,7 @@ import logger from './utils/logger.js';
 import swaggerRouter from './utils/swagger.js';
 import authRoutes from './routes/authRoutes.js';
 import pokemonRoutes from './routes/pokemonRoutes.js';
+import extAuthAPIRoutes from './routes/extAuthAPIRoutes.js';
 
 const app = express();
 
@@ -17,8 +18,11 @@ app.use(express.json());
 // Documentación de la API con Swagger
 app.use(swaggerRouter);
 
-// Rutas de nuestra API y la externa
+// Rutas de nuestra API
 app.use('/auth', authRoutes);
 app.use('/pokemon', pokemonRoutes);
+
+// Rutas de la API externa
+app.use('/extapi', extAuthAPIRoutes);
 
 export default app;
