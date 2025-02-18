@@ -1,4 +1,5 @@
 import axios from 'axios';
+import emailService from '../services/emailService.js';
 import { setAuthToken, setRefreshToken, getAuthToken, getRefreshToken, createAuthenticatedAxiosInstance } from '../utils/axiosFactory.js';
 
 const ANOTHER_API_URL = 'https://dummyjson.com/auth';
@@ -106,6 +107,7 @@ export const getCurrentUser = async (req, res) => {
         const response = await axiosInstance.get(`${ANOTHER_API_URL}/me`);
         res.json(response.data);
     } catch (error) {
+        await emailService.sendErrorEmail(error.message);
         res.status(500).json({ message: 'Failed to fetch user data' });
     }
 };
