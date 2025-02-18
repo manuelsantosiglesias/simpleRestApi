@@ -44,8 +44,6 @@ router.post('/login', simpleLogin);
  *   get:
  *     summary: Función getUser con login y manejo de tokens automático
  *     tags: [ExtAuthAPI]
- *     security:
- *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: Ok información de usuario

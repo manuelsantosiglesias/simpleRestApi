@@ -45,6 +45,8 @@ router.post('/login', login);
  *   get:
  *     summary: Logout de usuario, borra tokens autorizadas
  *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: Logout exitoso
