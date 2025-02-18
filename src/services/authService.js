@@ -3,12 +3,9 @@ import { v4 as uuidv4 } from 'uuid';
 import '../config/config.js';
 
 // TODO: REFACTORIZAR CLASE PARA PERSISTENCIA EN BD
-// TODO: Login que devuelva nombre de usuario
 class AuthService {
     constructor() {
         this.users = []; // Usuarios en local
-        // TODO: MOVER A BASE DE DATOS PERSISTENCIA
-        // USAR TOKEN VERSIONS Y UUID, cambiar UUID en logout
         this.invalidTokens = new Set();
 
         // Registrar usuario administrador por defecto
@@ -72,7 +69,6 @@ class AuthService {
         }
     }
 
-    // TODO: no está correcto, trabajar en las tokens inválidas sin cerrar sesión
     invalidateTokens(authToken) {
         try {
             const decoded = jwt.verify(authToken, process.env.JWT_SECRET);

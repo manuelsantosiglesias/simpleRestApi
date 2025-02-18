@@ -14,7 +14,6 @@ export const getPokemon = async (req, res) => {
         const parsedData = parser.parse(pokemonData.results);
         res.json(parsedData);
     } catch (error) {
-        // TODO: REVISAR MAIL
         await emailService.sendErrorEmail(error.message);
         res.status(500).json({ message: 'Failed to fetch data from external API' });
     }

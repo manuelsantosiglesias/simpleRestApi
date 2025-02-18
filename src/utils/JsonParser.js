@@ -1,3 +1,4 @@
+// TODO: Parser simple
 export class JsonParser {
     constructor(type) {
         this.type = type;

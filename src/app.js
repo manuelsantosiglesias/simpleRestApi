@@ -10,7 +10,7 @@ const app = express();
 // Uso de Morgan para logs
 app.use(logger);
 
-// TODO: CORS por si se utiliza por webs de otros dominios, probar
+// TODO: revisar uso de CORS
 app.use(cors());
 app.use(express.json());
 
