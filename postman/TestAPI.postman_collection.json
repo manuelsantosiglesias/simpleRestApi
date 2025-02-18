@@ -7,227 +7,297 @@
 	},
 	"item": [
 		{
-			"name": "defaultLogin",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "auth",
+			"item": [
+				{
+					"name": "defaultLogin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"login"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "localhost:3000/auth/login",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"auth",
-						"login"
-					]
+				{
+					"name": "registerUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin2\",\r\n    \"password\": \"admin2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "exampleRegUserLogin",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin2\",\r\n    \"password\": \"admin2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMiIsInRva2VuVmVyc2lvbiI6IjM5ZWI3Yzk0LTMwZTUtNGFhZS05ZGM5LTA1NDYzM2Q2OWZiMCIsImlhdCI6MTczOTg5NDgxNywiZXhwIjoxNzQwNDk5NjE3fQ.P18aTuDpe4UNzLMMXCcm9R8uEu0cbT5i2nOKwQlvbm8\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/auth/refresh",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidG9rZW5WZXJzaW9uIjoiODk3NzQwYTktOWYwZS00ZGMwLTk0YWYtNjE4ZDA2ZDVhNzA4IiwiaWF0IjoxNzM5ODk0NzM5LCJleHAiOjE3Mzk4OTgzMzl9.2PM2CDPIdlwFxGTM0bD8EdY-NYkQr7uJWcdRMnbkLLc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/auth/logout",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "registerUser",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"admin2\",\r\n    \"password\": \"admin2\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "pokeapi",
+			"item": [
+				{
+					"name": "pokemon",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidG9rZW5WZXJzaW9uIjoiMDAwMTExNjQtYTQ5NS00OWQzLWIzNjUtMGVhODcyYWI0MWEwIiwiaWF0IjoxNzM5NDM4NjMzLCJleHAiOjE3Mzk0NDIyMzN9.xxT141A7CQ9B8egViBbsFBUzla_6xqV2QYONZ1KLlng",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/pokemon",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"pokemon"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "localhost:3000/auth/register",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"auth",
-						"register"
-					]
+				{
+					"name": "pokemonId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidG9rZW5WZXJzaW9uIjoiODk3NzQwYTktOWYwZS00ZGMwLTk0YWYtNjE4ZDA2ZDVhNzA4IiwiaWF0IjoxNzM5ODk0NzM5LCJleHAiOjE3Mzk4OTgzMzl9.2PM2CDPIdlwFxGTM0bD8EdY-NYkQr7uJWcdRMnbkLLc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/pokemon/byId?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"pokemon",
+								"byId"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "exampleRegUserLogin",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNzM5MjY2ODI5LCJleHAiOjE3MzkyNzA0Mjl9.J6lO3ivFzOXJtNdKnL--_8Ly0O_IlErpvl5JUV5QgoY",
-							"type": "string"
+			"name": "extApi",
+			"item": [
+				{
+					"name": "extapiLogin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"emilys\",\r\n  \"password\": \"emilyspass\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/extapi/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"extapi",
+								"login"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"admin2\",\r\n    \"password\": \"admin2\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "extapiLogin Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/extapi/getUserAutoLogin",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"extapi",
+								"getUserAutoLogin"
+							]
 						}
-					}
-				},
-				"url": {
-					"raw": "localhost:3000/auth/login",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"auth",
-						"login"
-					]
+					},
+					"response": []
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "refresh",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidG9rZW5WZXJzaW9uIjoiMmI2MmExNjEtY2I0Ni00ZDhhLWIyYTgtNGE4YzczMzA1OWIzIiwiaWF0IjoxNzM5MzQ5MDQzLCJleHAiOjE3Mzk5NTM4NDN9.qKuV_56KlhN7NylC61lRay03Fp-iEsL30U4iC_Sru6c\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:3000/auth/refresh",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"auth",
-						"refresh"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "pokemon",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidG9rZW5WZXJzaW9uIjoiMDAwMTExNjQtYTQ5NS00OWQzLWIzNjUtMGVhODcyYWI0MWEwIiwiaWF0IjoxNzM5NDM4NjMzLCJleHAiOjE3Mzk0NDIyMzN9.xxT141A7CQ9B8egViBbsFBUzla_6xqV2QYONZ1KLlng",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/pokemon",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"pokemon"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "pokemonId",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidG9rZW5WZXJzaW9uIjoiMDAwMTExNjQtYTQ5NS00OWQzLWIzNjUtMGVhODcyYWI0MWEwIiwiaWF0IjoxNzM5NDM4NjMzLCJleHAiOjE3Mzk0NDIyMzN9.xxT141A7CQ9B8egViBbsFBUzla_6xqV2QYONZ1KLlng",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "",
-						"value": "",
-						"type": "text",
-						"disabled": true
-					}
-				],
-				"url": {
-					"raw": "http://localhost:3000/pokemon/byId?id=1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"pokemon",
-						"byId"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "1"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "logout",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluMiIsInRva2VuVmVyc2lvbiI6ImM2NGI4NGRhLTY0OWMtNDk2OC05ZjEyLWVhYWZjMTBiZTNiYyIsImlhdCI6MTczOTM2MTc1NCwiZXhwIjoxNzM5MzY1MzU0fQ.qnvev1AKk3oIyTZlp66d9uwcitNo_K7xTEK0sEDutkA",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:3000/auth/logout",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"auth",
-						"logout"
-					]
-				}
-			},
-			"response": []
+			]
 		}
 	]
 }
