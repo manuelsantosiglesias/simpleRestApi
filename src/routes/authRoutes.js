@@ -93,6 +93,10 @@ router.post('/refresh', refreshToken);
  *                 type: string
  *               email:
  *                 type: string
+ *           example:
+ *             username: test
+ *             password: test
+ *             email: test@test.com
  *     responses:
  *       201:
  *         description: Registro exitoso
