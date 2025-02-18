@@ -1,8 +1,6 @@
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
 import authService from '../services/authService.js';
-
-dotenv.config();
+import '../config/config.js';
 
 export const authenticateToken = (req, res, next) => {
     const authHeader = req.headers['authorization'];

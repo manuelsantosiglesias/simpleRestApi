@@ -1,8 +1,6 @@
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
 import { v4 as uuidv4 } from 'uuid';
-
-dotenv.config();
+import '../config/config.js';
 
 // TODO: REFACTORIZAR CLASE PARA PERSISTENCIA EN BD
 // TODO: Login que devuelva nombre de usuario

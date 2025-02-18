@@ -1,7 +1,6 @@
 import nodemailer from 'nodemailer';
-import dotenv from 'dotenv';
+import '../config/config.js';
 
-dotenv.config();
 // TODO: Probar, parece correcto, sobrecargar sendErrorEmail con destinatario
 // TODO: Multiples cuentas destinatarias??
 // TODO: Añadir gestión de errores también más allá del mail
