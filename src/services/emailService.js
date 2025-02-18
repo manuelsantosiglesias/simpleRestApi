@@ -35,8 +35,8 @@ class EmailService {
         const mailOptions = {
             from: process.env.EMAIL_USER,
             to: process.env.ERROR_NOTIFICATION_EMAIL,
-            subject: 'API Error Notification',
-            text: `An error occurred: ${errorMessage}`
+            subject: process.env.EMAIL_SUBJECT,
+            text: `${process.env.EMAIL_TEXT} ${errorMessage}`
         };
 
         try {
