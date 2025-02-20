@@ -2,18 +2,24 @@ import morgan from 'morgan';
 import { createStream } from 'rotating-file-stream';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import fs from 'fs';
 
-// path de los ficheros de logs
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Fichero de logs rotativo
+// Fichero de logs rotativo para access.log
 const accessLogStream = createStream('access.log', {
     interval: '1d',
     path: path.join(__dirname, '../log')
 });
 
-// Formato personalizado
+// Fichero de logs rotativo para error.log
+const errorLogStream = createStream('error.log', {
+    interval: '1d',
+    path: path.join(__dirname, '../log')
+});
+
+// Formato personalizado para errores
 morgan.token('headers', function (req) {
     return JSON.stringify(req.headers);
 });
@@ -33,7 +39,17 @@ morgan.token('remote-connection', function (req) {
 
 const customFormat = ':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent" :headers :remote-connection';
 
-// Configuración de Morgan para logs
-const logger = morgan(customFormat, { stream: accessLogStream });
+// Peticiones
+const accessLogger = morgan(customFormat, { stream: accessLogStream });
 
-export default logger;
+// Errores
+const logError = (errorMessage) => {
+    const logMessage = `${new Date().toISOString()} - ${errorMessage}\n`;
+    fs.appendFile(path.join(__dirname, '../log/error.log'), logMessage, (err) => {
+        if (err) {
+            console.error('Failed to write to error.log:', err);
+        }
+    });
+};
+
+export { accessLogger, logError };

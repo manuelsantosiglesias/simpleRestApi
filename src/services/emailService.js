@@ -1,12 +1,11 @@
 import nodemailer from 'nodemailer';
 import '../config/config.js';
+import { logError } from '../utils/logger.js';
 
-// TODO: Probar, parece correcto, sobrecargar sendErrorEmail con destinatario
-// TODO: Multiples cuentas destinatarias??
-// TODO: Añadir gestión de errores también más allá del mail
-
+// No configurado mail, solo configurado log de errores
 class EmailService {
     constructor() {
+        /*
         this.transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
@@ -15,7 +14,7 @@ class EmailService {
             }
         });
 
-        /*
+        
             this.transporter = nodemailer.createTransport({
                 host: 'something.yourdomain.com',
                 port: 465,
@@ -29,6 +28,8 @@ class EmailService {
     }
 
     async sendErrorEmail(errorMessage) {
+        logError(errorMessage);
+        /*
         const mailOptions = {
             from: process.env.EMAIL_USER,
             to: process.env.ERROR_NOTIFICATION_EMAIL,
@@ -40,7 +41,9 @@ class EmailService {
             await this.transporter.sendMail(mailOptions);
         } catch (error) {
             console.error('Error sending email:', error);
+            logError(error.message);
         }
+        */
     }
 }
 
