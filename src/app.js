@@ -5,6 +5,8 @@ import swaggerRouter from './utils/swagger.js';
 import authRoutes from './routes/authRoutes.js';
 import pokemonRoutes from './routes/pokemonRoutes.js';
 import extAuthAPIRoutes from './routes/extAuthAPIRoutes.js';
+import customerRoutes from './routes/customerRoutes.js';
+import orderRoutes from './routes/orderRoutes.js';
 
 const app = express();
 
@@ -20,6 +22,8 @@ app.use(swaggerRouter);
 
 // Rutas de nuestra API
 app.use('/auth', authRoutes);
+app.use('/customer', customerRoutes);
+app.use('/order', orderRoutes);
 app.use('/pokemon', pokemonRoutes);
 app.use('/extapi', extAuthAPIRoutes);
 
