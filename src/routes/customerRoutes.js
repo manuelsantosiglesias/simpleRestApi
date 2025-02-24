@@ -1,7 +1,6 @@
 import express from 'express';
-import { crearCustomer } from '../controllers/customerController.js';
+import { crearCustomer, getCustomerById, getCustomerByName } from '../controllers/customerController.js';
 import { Router } from 'express';
-import { authenticateToken } from '../middlewares/authMiddleware.js';
 
 const router = Router();
 
@@ -58,7 +57,7 @@ const router = Router();
  *           type: string
  *           description: Nombre de la empresa del cliente
  *       example:
- *         numeroCliente: 478
+ *         numeroCliente: 1
  *         nombre: John Doe
  *         cifNif: 12345678A
  *         direccion: 123 Main St
@@ -94,5 +93,59 @@ const router = Router();
  *         description: Error en la solicitud
  */
 router.post('/createCustomer', crearCustomer);
+
+/**
+ * @swagger
+ * /customer/{id}:
+ *   get:
+ *     summary: Obtener un cliente por ID
+ *     tags: [Customer]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID del cliente
+ *     responses:
+ *       200:
+ *         description: Cliente obtenido exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Customer'
+ *       404:
+ *         description: Cliente no encontrado
+ *       400:
+ *         description: Error en la solicitud
+ */
+router.get('/:id', getCustomerById);
+
+/**
+ * @swagger
+ * /customer/name/{name}:
+ *   get:
+ *     summary: Obtener un cliente por nombre
+ *     tags: [Customer]
+ *     parameters:
+ *       - in: path
+ *         name: name
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Nombre del cliente
+ *     responses:
+ *       200:
+ *         description: Cliente obtenido exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Customer'
+ *       404:
+ *         description: Cliente no encontrado
+ *       400:
+ *         description: Error en la solicitud
+ */
+router.get('/name/:name', getCustomerByName);
 
 export default router;

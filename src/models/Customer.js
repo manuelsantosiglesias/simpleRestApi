@@ -27,7 +27,7 @@ class Customer {
             throw new Error('Teléfono debe ser un número de 9 dígitos o incluir un prefijo internacional');
         }
 
-        if(!telefonoRegex.test(data.movil)){
+        if (!telefonoRegex.test(data.movil)) {
             throw new Error('Móvil debe ser un número de 9 dígitos o incluir un prefijo internacional');
         }
 
@@ -42,6 +42,30 @@ class Customer {
         if (!emailRegex.test(data.email)) {
             throw new Error('Email no es válido');
         }
+    }
+
+    static customers = [];
+
+    static async create(data) {
+        this.validate(data);
+
+        // Verificar si el ID ya existe
+        const existingCustomer = this.customers.find(customer => customer.numeroCliente === data.numeroCliente);
+        if (existingCustomer) {
+            throw new Error('El ID del cliente ya existe');
+        }
+
+        const customer = new Customer(data);
+        this.customers.push(customer);
+        return customer;
+    }
+
+    static async findById(id) {
+        return this.customers.find(customer => customer.numeroCliente === id);
+    }
+
+    static async findByName(name) {
+        return this.customers.filter(customer => customer.nombre.includes(name));
     }
 }
 
