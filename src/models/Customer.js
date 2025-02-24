@@ -46,8 +46,21 @@ class Customer {
 
     static customers = [];
 
+    static generateId() {
+        if (this.customers.length === 0) {
+            return 1;
+        }
+        const maxId = Math.max(...this.customers.map(customer => customer.numeroCliente));
+        return maxId + 1;
+    }
+
     static async create(data) {
         this.validate(data);
+
+        // Generar ID si no se proporciona
+        if (!data.numeroCliente) {
+            data.numeroCliente = this.generateId();
+        }
 
         // Verificar si el ID ya existe
         const existingCustomer = this.customers.find(customer => customer.numeroCliente === data.numeroCliente);
