@@ -8,7 +8,7 @@ export const crearCustomer = async (req, res) => {
 
         const parser = new JsonParser(Customer);
         const parsedCustomer = parser.parse(customerData);
-
+        // TODO: Petición libra
         res.status(201).json(parsedCustomer);
     } catch (error) {
         res.status(400).json({ error: error.message });

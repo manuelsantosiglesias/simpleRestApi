@@ -62,7 +62,7 @@ const getRefreshToken = () => {
     return refreshToken;
 };
 
-// Getter y setter de token (por ahora en local)
+// Getter y setter de token (por ahora en local para libra)
 export const setAuthToken = (token) => {
     authToken = token;
 };

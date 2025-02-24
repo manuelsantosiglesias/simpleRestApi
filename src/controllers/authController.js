@@ -22,7 +22,6 @@ export const refreshToken = (req, res) => {
 };
 
 export const logout = (req, res) => {
-    // TODO: remove auth header ??
     const authToken = req.body.authToken || (req.headers.authorization && req.headers.authorization.split(' ')[1]);
     try {
         if (!authToken) {

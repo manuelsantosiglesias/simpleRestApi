@@ -1,5 +1,6 @@
 import authService from '../services/authService.js';
 
+// TODO: Not used pendiente de eliminar
 export const register = (req, res) => {
     const { username, password } = req.body;
     try {

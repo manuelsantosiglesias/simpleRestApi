@@ -3,8 +3,6 @@ import cors from 'cors';
 import { accessLogger } from './utils/logger.js';
 import swaggerRouter from './utils/swagger.js';
 import authRoutes from './routes/authRoutes.js';
-import pokemonRoutes from './routes/pokemonRoutes.js';
-import extAuthAPIRoutes from './routes/extAuthAPIRoutes.js';
 import customerRoutes from './routes/customerRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 
@@ -13,7 +11,7 @@ const app = express();
 // Uso de Morgan para logs
 app.use(accessLogger);
 
-// TODO: revisar uso de CORS
+// TODO: revisar CORS
 app.use(cors());
 app.use(express.json());
 
@@ -24,7 +22,5 @@ app.use(swaggerRouter);
 app.use('/auth', authRoutes);
 app.use('/customer', customerRoutes);
 app.use('/order', orderRoutes);
-app.use('/pokemon', pokemonRoutes);
-app.use('/extapi', extAuthAPIRoutes);
 
 export default app;

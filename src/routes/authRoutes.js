@@ -76,35 +76,4 @@ router.get('/logout', authenticateToken, logout);
  */
 router.post('/refresh', refreshToken);
 
-/**
- * @swagger
- * /auth/register:
- *   post:
- *     summary: Registro de usuario
- *     tags: [Auth]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               username:
- *                 type: string
- *               password:
- *                 type: string
- *               email:
- *                 type: string
- *           example:
- *             username: test
- *             password: test
- *             email: test@test.com
- *     responses:
- *       201:
- *         description: Registro exitoso
- *       400:
- *         description: Datos inválidos
- */
-router.post('/register', register);
-
 export default router;
