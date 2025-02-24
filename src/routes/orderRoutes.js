@@ -1,5 +1,5 @@
 import express from 'express';
-import { crearOrder } from '../controllers/orderController.js';
+import { crearOrder, getOrderById, getOrderByName } from '../controllers/orderController.js';
 import { Router } from 'express';
 import { authenticateToken } from '../middlewares/authMiddleware.js';
 
@@ -167,5 +167,59 @@ const router = Router();
  *         description: Error en la solicitud
  */
 router.post('/createOrder', crearOrder);
+
+/**
+ * @swagger
+ * /order/{id}:
+ *   get:
+ *     summary: Obtener una orden por ID
+ *     tags: [Order]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID de la orden
+ *     responses:
+ *       200:
+ *         description: Orden obtenida exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Order'
+ *       404:
+ *         description: Orden no encontrada
+ *       400:
+ *         description: Error en la solicitud
+ */
+router.get('/:id', getOrderById);
+
+/**
+ * @swagger
+ * /order/name/{name}:
+ *   get:
+ *     summary: Obtener una orden por nombre
+ *     tags: [Order]
+ *     parameters:
+ *       - in: path
+ *         name: name
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Nombre del cliente
+ *     responses:
+ *       200:
+ *         description: Orden obtenida exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Order'
+ *       404:
+ *         description: Orden no encontrada
+ *       400:
+ *         description: Error en la solicitud
+ */
+router.get('/name/:name', getOrderByName);
 
 export default router;

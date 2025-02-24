@@ -1,5 +1,6 @@
 class Order {
     constructor(data) {
+        this.id = data.id || Order.generateId();
         this.billingDetails = data.billingDetails;
         this.shippingDetails = data.shippingDetails;
         this.products = data.products;
@@ -49,6 +50,39 @@ class Order {
         if (data.total !== calculatedTotal) {
             throw new Error('El total de la orden no es correcto');
         }
+    }
+
+    //TODO: Provisional almacenado en memoria
+    static orders = [];
+
+    static generateId() {
+        if (this.orders.length === 0) {
+            return 1;
+        }
+        const maxId = Math.max(...this.orders.map(order => order.id));
+        return maxId + 1;
+    }
+
+    static async create(data) {
+        this.validate(data);
+
+        // Verificar si el ID ya existe
+        const existingOrder = this.orders.find(order => order.id === data.id);
+        if (existingOrder) {
+            throw new Error('El ID de la orden ya existe');
+        }
+
+        const order = new Order(data);
+        this.orders.push(order);
+        return order;
+    }
+
+    static async findById(id) {
+        return this.orders.find(order => order.id === id);
+    }
+
+    static async findByName(name) {
+        return this.orders.filter(order => order.billingDetails.razonSocial.includes(name));
     }
 }
 
